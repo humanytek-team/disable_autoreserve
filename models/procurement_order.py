@@ -1,7 +1,6 @@
-from odoo import api, fields, models, tools, registry
+from odoo import api, models, tools, registry
 
 import logging
-import threading
 
 _logger = logging.getLogger(__name__)
 
@@ -39,7 +38,7 @@ class ProcurementComputeAll(models.TransientModel):
 class ProcurementOrder(models.Model):
     _inherit = 'procurement.order'
 
-    # Same as run_scheduler in procurement modules, used to avoid overwrie by stock
+    # Same as run_scheduler in procurement modules, used to avoid overwrite by stock
     @api.model
     def run_scheduler2(self, use_new_cursor=False, company_id=False):
         """

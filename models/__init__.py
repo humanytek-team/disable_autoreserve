@@ -19,3 +19,5 @@
 ##############################################################################
 
 from . import procurement_order
+from . import stock_move
+from . import stock_procurement_order
