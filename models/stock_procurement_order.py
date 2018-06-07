@@ -8,7 +8,7 @@ class ProcurementOrder(models.Model):
     @api.model
     def run_scheduler2(self, use_new_cursor=False, company_id=False):
         """Call the scheduler in order to check the running procurements (super method), to check the minimum stock rules and the availability of moves. This function is intended to be run for all the companies at the same time, so we run functions as SUPERUSER to avoid intercompanies and access rights issues."""
-        super(ProcurementOrder, self).run_scheduler(use_new_cursor=use_new_cursor, company_id=company_id)
+        super(ProcurementOrder, self).run_scheduler2(use_new_cursor=use_new_cursor, company_id=company_id)
         try:
             if use_new_cursor:
                 cr = registry(self._cr.dbname).cursor()
