@@ -96,7 +96,8 @@ class StockMove(models.Model):
 
                 quants = Quant.quants_get_preferred_domain(qty, move, domain=main_domain[move.id], preferred_domain_list=[])
                 # Humanytek fix
-                # Quant.quants_reserve(quants, move)
+                # Humanytek check next line
+                Quant.quants_reserve(quants, move)
 
         # force assignation of consumable products and incoming from supplier/inventory/production
         # Do not take force_assign as it would create pack operations
