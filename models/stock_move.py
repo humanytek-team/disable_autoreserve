@@ -21,7 +21,9 @@ class StockMove(models.Model):
 
         # work only on in progress moves
         moves = self.filtered(lambda move: move.state in ['confirmed', 'waiting', 'assigned'])
-        moves.filtered(lambda move: move.reserved_quant_ids).do_unreserve()
+        # Humanytek fix
+        # Humanytek check next line
+        # moves.filtered(lambda move: move.reserved_quant_ids).do_unreserve()
         for move in moves:
             if move.location_id.usage in ('supplier', 'inventory', 'production'):
                 moves_to_assign |= move
@@ -97,7 +99,7 @@ class StockMove(models.Model):
                 quants = Quant.quants_get_preferred_domain(qty, move, domain=main_domain[move.id], preferred_domain_list=[])
                 # Humanytek fix
                 # Humanytek check next line
-                Quant.quants_reserve(quants, move)
+                # Quant.quants_reserve(quants, move)
 
         # force assignation of consumable products and incoming from supplier/inventory/production
         # Do not take force_assign as it would create pack operations
